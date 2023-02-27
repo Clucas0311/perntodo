@@ -48,6 +48,20 @@ class TodoRepo {
     console.log("todo", todo);
     return todo;
   }
+
+  static async delete(id) {
+    try {
+      await pool.query(
+        `
+              DELETE FROM todo
+              WHERE todo_id = $1
+          `,
+        [id]
+      );
+    } catch (error) {
+      console.error("There was an error deleting todo", error.message);
+    }
+  }
 }
 
 module.exports = TodoRepo;

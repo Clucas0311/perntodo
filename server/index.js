@@ -55,13 +55,22 @@ app.put("/todos/:id", async (req, res) => {
     const { description } = req.body;
     const updateTodo = await TodoRepo.update(id, description);
     console.log("updateTodo", updateTodo);
-    res.json("Todo was updated");
+    res.json("Todo was updated!");
   } catch (error) {
     console.error("There was an error updating todo", error.message);
   }
 });
 
 // delete a todo
+app.delete("/todos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteTodo = await TodoRepo.delete(id);
+    res.json("Todo was deleted!");
+  } catch (error) {
+    console.error("There was an error deleting todo", error.message);
+  }
+});
 
 // we need to get data from the client side in order to do so we have to get it from
 // the request.body object this middleware allows us to get json data from the body object
