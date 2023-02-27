@@ -6,6 +6,7 @@ const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
 const pool = require("./db");
+const TodoRepo = require("./repos/todo-repo");
 
 // middleware
 app.use(morgan("dev"));
@@ -19,13 +20,7 @@ app.post("/todos", async (req, res) => {
   try {
     const { description } = req.body;
     console.log("description", description);
-    const newTodo = await pool.query(
-      `
-        INSERT INTO todo (description)
-        VALUES ($1)
-    `,
-      [description]
-    );
+    const newTodo = await TodoRepo.insert(description);
     res.json(newTodo);
   } catch (error) {
     console.error("There was an error creating todo", error.message);
@@ -33,8 +28,33 @@ app.post("/todos", async (req, res) => {
   }
 });
 // get all todo
+app.get("/", async (req, res) => {
+  try {
+    const getAllTodos = await TodoRepo.find();
+    res.json(getAllTodos);
+  } catch (error) {
+    console.error("There was an error getting todos", error);
+  }
+});
+
+// get a todo
+app.get("/todos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const todo = await TodoRepo.findById(id);
+    res.json(todo);
+  } catch (error) {
+    console.error("There was an error get single todo", error);
+  }
+});
 
 // update a todo
+app.put("/:todoId", async (req, res) => {
+  try {
+  } catch (error) {
+    console.error("There was an error updating todo", error);
+  }
+});
 
 // delete a todo
 
