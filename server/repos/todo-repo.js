@@ -34,16 +34,19 @@ class TodoRepo {
     return rows;
   }
   static async update(id, description) {
-    const result = await pool.query(
+    const {
+      rows: [todo],
+    } = await pool.query(
       `
         UPDATE todo
         SET description=$2
-        WHERE id=$1
+        WHERE todo_id=$1
         RETURNING *;
     `,
       [id, description]
     );
-    return result;
+    console.log("todo", todo);
+    return todo;
   }
 }
 

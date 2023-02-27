@@ -28,12 +28,12 @@ app.post("/todos", async (req, res) => {
   }
 });
 // get all todo
-app.get("/", async (req, res) => {
+app.get("/todos", async (req, res) => {
   try {
     const getAllTodos = await TodoRepo.find();
     res.json(getAllTodos);
   } catch (error) {
-    console.error("There was an error getting todos", error);
+    console.error("There was an error getting todos", error.message);
   }
 });
 
@@ -44,15 +44,20 @@ app.get("/todos/:id", async (req, res) => {
     const todo = await TodoRepo.findById(id);
     res.json(todo);
   } catch (error) {
-    console.error("There was an error get single todo", error);
+    console.error("There was an error get single todo", error.message);
   }
 });
 
 // update a todo
-app.put("/:todoId", async (req, res) => {
+app.put("/todos/:id", async (req, res) => {
   try {
+    const { id } = req.params;
+    const { description } = req.body;
+    const updateTodo = await TodoRepo.update(id, description);
+    console.log("updateTodo", updateTodo);
+    res.json("Todo was updated");
   } catch (error) {
-    console.error("There was an error updating todo", error);
+    console.error("There was an error updating todo", error.message);
   }
 });
 
