@@ -5,22 +5,33 @@ const app = express();
 // import and call cors
 const cors = require("cors");
 const morgan = require("morgan");
-const client = require("./db");
+const pool = require("./db");
 
 // middleware
 app.use(morgan("dev"));
 app.use(cors());
+app.use(express.json());
 
 // ROUTES
 
 // create a todo
-// app.post("/todos", async(req, res, next) => {
-//     try {
-
-//     } catch (error) {
-//         console.error("There was an error creating ")
-//     }
-// })
+app.post("/todos", async (req, res) => {
+  try {
+    const { description } = req.body;
+    console.log("description", description);
+    const newTodo = await pool.query(
+      `
+        INSERT INTO todo (description)
+        VALUES ($1)
+    `,
+      [description]
+    );
+    res.json(newTodo);
+  } catch (error) {
+    console.error("There was an error creating todo", error.message);
+    throw error;
+  }
+});
 // get all todo
 
 // update a todo
