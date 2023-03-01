@@ -5,8 +5,6 @@ const app = express();
 // import and call cors
 const cors = require("cors");
 const morgan = require("morgan");
-const pool = require("./db");
-const TodoRepo = require("./repos/todo-repo");
 
 // middleware
 app.use(morgan("dev"));
