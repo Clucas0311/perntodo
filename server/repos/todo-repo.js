@@ -1,11 +1,14 @@
 const pool = require("../db");
 class TodoRepo {
+  // get all todos
   static async find() {
     const { rows } = await pool.query(`
         SELECT * FROM todo;
     `);
     return rows;
   }
+
+  // get todo by id
   static async findById(id) {
     try {
       const {
@@ -22,6 +25,8 @@ class TodoRepo {
       console.error("There was an error getting todo", error);
     }
   }
+
+  // create a new todo
   static async insert(description) {
     const { rows } = await pool.query(
       `
@@ -33,6 +38,8 @@ class TodoRepo {
     );
     return rows;
   }
+
+  // update a todo
   static async update(id, description) {
     const {
       rows: [todo],
@@ -49,6 +56,7 @@ class TodoRepo {
     return todo;
   }
 
+  // delete a todo
   static async delete(id) {
     try {
       await pool.query(
