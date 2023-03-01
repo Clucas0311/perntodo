@@ -12,6 +12,16 @@ export const createTodo = async (description) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("There was an error creating todo", error);
+    console.error("There was an error creating todo", error.message);
+  }
+};
+
+export const fetchAllTodos = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/todos`);
+    const data = response.json();
+    return data;
+  } catch (error) {
+    console.error("There was an error fetching all the todos", error.message);
   }
 };

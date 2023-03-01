@@ -11,7 +11,6 @@ const InputTodo = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const newTodo = await createTodo(description);
-    console.log("newTodo", newTodo);
     setDescription("");
   };
   return (
