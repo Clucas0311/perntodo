@@ -28,7 +28,9 @@ class TodoRepo {
 
   // create a new todo
   static async insert(description) {
-    const { rows } = await pool.query(
+    const {
+      rows: [todo],
+    } = await pool.query(
       `
               INSERT INTO todo (description)
               VALUES ($1)
@@ -36,7 +38,7 @@ class TodoRepo {
           `,
       [description]
     );
-    return rows;
+    return todo;
   }
 
   // update a todo

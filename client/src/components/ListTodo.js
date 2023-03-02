@@ -4,7 +4,14 @@ import TodoItem from "./TodoItem";
 const ListTodo = ({ todos, setTodos }) => {
   console.log("todos", todos);
   const renderedTodo = todos.map((todo) => {
-    return <TodoItem key={todo.todo_id} todo={todo} setTodos={setTodos} />;
+    return (
+      <TodoItem
+        key={todo.todo_id}
+        todo={todo}
+        setTodos={setTodos}
+        todos={todos}
+      />
+    );
   });
   return (
     <Fragment>

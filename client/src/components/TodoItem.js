@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { deleteTodo } from "../api";
 import EditTodo from "./EditTodo";
 
-const TodoItem = ({ todo, setTodos }) => {
+const TodoItem = ({ todo, setTodos, todos }) => {
   console.log("todo in delete", todo);
   const handleDeleteClick = async (id) => {
     await deleteTodo(id);
@@ -13,7 +13,7 @@ const TodoItem = ({ todo, setTodos }) => {
       <tr>
         <td>{todo.description}</td>
         <td>
-          <EditTodo todo={todo} setTodos={setTodos} />
+          <EditTodo todo={todo} setTodos={setTodos} todos={todos} />
         </td>
         <td>
           <button

@@ -42,8 +42,9 @@ todoRouter.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { description } = req.body;
-    const updateTodo = await TodoRepo.update(id, description);
-    res.json("Todo was updated!");
+    const updatedTodo = await TodoRepo.update(id, description);
+    console.log("updatedTodo", updatedTodo);
+    res.json(updatedTodo);
   } catch (error) {
     console.error("There was an error updating todo", error.message);
   }
