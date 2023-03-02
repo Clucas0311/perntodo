@@ -13,7 +13,7 @@ const TodoItem = ({ todo, setTodos }) => {
       <tr>
         <td>{todo.description}</td>
         <td>
-          <EditTodo />
+          <EditTodo todo={todo} setTodos={setTodos} />
         </td>
         <td>
           <button

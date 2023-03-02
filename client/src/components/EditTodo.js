@@ -1,18 +1,24 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
+import { editTodo } from "../api";
 
-const EditTodo = () => {
+const EditTodo = ({ setTodos, todo }) => {
+  const [description, setDescription] = useState(todo.description);
+
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
   return (
     <Fragment>
       <button
         type="button"
         className="btn btn-warning"
         data-toggle="modal"
-        data-target="#myModal"
+        data-target={`#id${todo.todo_id}`}
       >
         Edit
       </button>
 
-      <div className="modal" id="myModal">
+      <div className="modal" id={`id${todo.todo_id}`}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -23,7 +29,7 @@ const EditTodo = () => {
             </div>
 
             <div className="modal-body">
-              <input type="text" className="form-control" />
+              <input type="text" className="form-control" value={description} />
             </div>
 
             <div className="modal-footer">

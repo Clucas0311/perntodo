@@ -26,6 +26,20 @@ export const fetchAllTodos = async () => {
   }
 };
 
+export const editTodo = async (id, description) => {
+  try {
+    const response = await fetch(`${BASE_URL}/todos/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": " application/json" },
+      body: JSON.stringify({ description }),
+    });
+    const data = response.json();
+    return data;
+  } catch (error) {
+    console.error("There was an error editing todo", error.message);
+  }
+};
+
 export const deleteTodo = async (id) => {
   try {
     await fetch(`${BASE_URL}/todos/${id}`, {
