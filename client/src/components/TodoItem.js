@@ -1,5 +1,6 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { deleteTodo } from "../api";
+import EditTodo from "./EditTodo";
 
 const TodoItem = ({ todo, setTodos }) => {
   console.log("todo in delete", todo);
@@ -11,7 +12,9 @@ const TodoItem = ({ todo, setTodos }) => {
     <Fragment>
       <tr>
         <td>{todo.description}</td>
-        <td>Edit</td>
+        <td>
+          <EditTodo />
+        </td>
         <td>
           <button
             className="btn btn-danger"
