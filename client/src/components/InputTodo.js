@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { createTodo } from "../api";
-const InputTodo = () => {
+const InputTodo = ({ setTodos }) => {
   const [description, setDescription] = useState("");
 
   const handleDescriptionChange = (event) => {
@@ -11,6 +11,9 @@ const InputTodo = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const newTodo = await createTodo(description);
+    console.log("newTodo", newTodo);
+    setTodos((prevTodos) => [newTodo, ...prevTodos]);
+
     setDescription("");
   };
   return (

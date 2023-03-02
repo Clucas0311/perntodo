@@ -4,20 +4,21 @@ import InputTodo from "./components/InputTodo";
 import ListTodo from "./components/ListTodo";
 
 const App = () => {
-  const [todos, setTodo] = useState([]);
+  const [todos, setTodos] = useState([]);
 
   useEffect(() => {
     const getAllTodos = async () => {
       const todos = await fetchAllTodos();
       console.log("todos", todos);
-      setTodo(todos);
+      setTodos(todos);
     };
     getAllTodos();
   }, []);
+
   return (
     <Fragment>
       <div className="container">
-        <InputTodo />
+        <InputTodo setTodos={setTodos} />
         <ListTodo todos={todos} />
       </div>
     </Fragment>
