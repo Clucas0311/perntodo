@@ -19,7 +19,7 @@ const App = () => {
     <Fragment>
       <div className="container">
         <InputTodo setTodos={setTodos} />
-        <ListTodo todos={todos} />
+        <ListTodo todos={todos} setTodos={setTodos} />
       </div>
     </Fragment>
   );

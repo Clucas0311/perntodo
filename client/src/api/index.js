@@ -25,3 +25,13 @@ export const fetchAllTodos = async () => {
     console.error("There was an error fetching all the todos", error.message);
   }
 };
+
+export const deleteTodo = async (id) => {
+  try {
+    await fetch(`${BASE_URL}/todos/${id}`, {
+      method: "DELETE",
+    });
+  } catch (error) {
+    console.error("There was an error deleting todo", error.message);
+  }
+};
