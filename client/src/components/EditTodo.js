@@ -7,7 +7,7 @@ const EditTodo = ({ setTodos, todo, todos }) => {
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
-
+// Handle Edit MEthod
   const handleEditClick = async (event) => {
     event.preventDefault();
     const editedTodo = await editTodo(todo.todo_id, description);
